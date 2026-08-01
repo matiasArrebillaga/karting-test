@@ -1,15 +1,14 @@
-import express from "express";
+import dotenv from "dotenv";
+import app from "./app";
+import { connectDB } from "./config/database";
 
-const app = express();
+dotenv.config();
+console.log("MONGO_URI:", process.env.MONGO_URI);
+console.log("PORT:", process.env.PORT);
+const PORT = process.env.PORT || 3001;
 
-const PORT = 3000;
-
-
-app.get("/", (req, res) => {
-    res.send("Servidor funcionando");
-});
-
+connectDB();
 
 app.listen(PORT, () => {
-    console.log(`Servidor funcionando en puerto ${PORT}`);
+    console.log(`Servidor funcionando en http://localhost:${PORT}`);
 });
