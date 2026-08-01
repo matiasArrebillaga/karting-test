@@ -17,7 +17,6 @@ const kartingSchema = new Schema(
             required: true,
             enum: [
                 "Disponible",
-                "Alquilado",
                 "Fuera de servicio"
             ],
             default: "Disponible"
