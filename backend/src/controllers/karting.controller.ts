@@ -24,6 +24,19 @@ class KartingController {
             res.status(500).json({message: 'Error al obtener el karting', error});
         }
     }
+
+    async create(req: Request, res: Response) {
+        try {
+            const nuevoKarting = await kartingService.createKarting(req.body);
+
+            res.status(201).json(nuevoKarting);
+
+        } catch (error) {
+            res.status(500).json({
+                message: "Error al crear el karting"
+            });
+        }
+    }
     async update (req: Request, res: Response){
         try {
             const id = req.params.id as string;
