@@ -1,5 +1,5 @@
 import Karting from "../models/karting.model";
-
+import { IKarting } from "../interfaces/karting.interface";
 class KartingService {
 
 
@@ -13,12 +13,12 @@ class KartingService {
     }
 
 
-    async createKarting(data: any) {
+    async createKarting(data: IKarting) {
         return await Karting.create(data);
     }
 
 
-    async updateKarting(id: string, data: any) {
+    async updateKarting(id: string, data: Partial<IKarting>) {
         return await Karting.findByIdAndUpdate(id, data, {
             new: true
         });

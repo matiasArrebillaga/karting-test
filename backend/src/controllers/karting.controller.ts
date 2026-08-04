@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import kartingService from '../services/karting.services';
-
+import { IKarting } from '../interfaces/karting.interface';
 class KartingController {
     async getAll(req: Request, res: Response){
         try {
@@ -27,7 +27,8 @@ class KartingController {
 
     async create(req: Request, res: Response) {
         try {
-            const nuevoKarting = await kartingService.createKarting(req.body);
+            const data: IKarting = req.body
+            const nuevoKarting = await kartingService.createKarting(data);
 
             res.status(201).json(nuevoKarting);
 
@@ -39,8 +40,9 @@ class KartingController {
     }
     async update (req: Request, res: Response){
         try {
+            const data: Partial<IKarting> = req.body
             const id = req.params.id as string;
-            const kartingActualizado = await kartingService.updateKarting(id, req.body);
+            const kartingActualizado = await kartingService.updateKarting(id, data);
             if (!kartingActualizado){
                 return res.status(404).json({
                     message:"Karting no encontrado"
