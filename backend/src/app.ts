@@ -1,11 +1,12 @@
 import express from "express";
 import kartingRoutes from "./routes/karting.routes";
+
 const app = express();
-app.use("/api/kartings", kartingRoutes);
-// Middleware para recibir JSON
+
 app.use(express.json());
 
-// Ruta de prueba
+app.use("/api/kartings", kartingRoutes);
+
 app.get("/", (req, res) => {
     res.send("API del sistema de karting funcionando");
 });
