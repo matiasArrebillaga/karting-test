@@ -15,7 +15,7 @@ class UserService {
         return await User.findByIdAndUpdate(id, data,{new:true});
     }
     async deleteUser (id:string){
-        return await User.findByIdAndUpdate(id)
+        return await User.findByIdAndDelete(id)
     }
 }
 export default new UserService();
