@@ -1,6 +1,7 @@
 import User from "../models/user.model";
 import { IUser } from "../interfaces/user.interface";
 import bcrypt from "bcrypt";
+import { generateToken } from "../utils/jwt";
 
 class AuthService{
     async register (data: IUser){
@@ -25,7 +26,8 @@ class AuthService{
         if (!passwordCorrecta){
             throw new Error ("Email o contraseña incorecta")
         }
-        return user;
+        const token= generateToken(user.id);
+        return {token,user};
     }
 }
 export default new AuthService();
