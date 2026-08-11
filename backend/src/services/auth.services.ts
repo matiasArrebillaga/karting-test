@@ -26,7 +26,7 @@ class AuthService{
         if (!passwordCorrecta){
             throw new Error ("Email o contraseña incorecta")
         }
-        const token= generateToken(user.id);
+        const token= generateToken(user.id, user.rol);
         return {token,user};
     }
 }
