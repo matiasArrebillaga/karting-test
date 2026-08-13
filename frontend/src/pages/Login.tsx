@@ -2,7 +2,6 @@ import { useState } from "react";
 import api from "../services/api";
 
 function Login() {
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -10,43 +9,48 @@ function Login() {
         e.preventDefault();
 
         try {
-
             const response = await api.post("/auth/login", {
                 email,
                 password
             });
 
-            console.log(response.data);
+            console.log("Login exitoso:", response.data);
 
         } catch (error) {
-
             console.error("Error al iniciar sesión:", error);
-
         }
     };
 
     return (
-        <form onSubmit={handleLogin}>
+        <div>
+            <h1>Iniciar sesión</h1>
 
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+            <form onSubmit={handleLogin}>
 
-            <input
-                type="password"
-                placeholder="Contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+                <div>
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
 
-            <button type="submit">
-                Iniciar sesión
-            </button>
+                <div>
+                    <label>Contraseña</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
 
-        </form>
+                <button type="submit">
+                    Iniciar sesión
+                </button>
+
+            </form>
+        </div>
     );
 }
 
