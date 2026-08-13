@@ -5,8 +5,12 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        console.log("BOTÓN LOGIN PRESIONADO");
+        console.log("Email:", email);
+        console.log("Password:", password);
 
         try {
             const response = await api.post("/auth/login", {
@@ -14,10 +18,10 @@ function Login() {
                 password
             });
 
-            console.log("Login exitoso:", response.data);
+            console.log("LOGIN EXITOSO:", response.data);
 
         } catch (error) {
-            console.error("Error al iniciar sesión:", error);
+            console.error("ERROR EN LOGIN:", error);
         }
     };
 
@@ -28,8 +32,12 @@ function Login() {
             <form onSubmit={handleLogin}>
 
                 <div>
-                    <label>Email</label>
+                    <label htmlFor="email">
+                        Email
+                    </label>
+
                     <input
+                        id="email"
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -37,8 +45,12 @@ function Login() {
                 </div>
 
                 <div>
-                    <label>Contraseña</label>
+                    <label htmlFor="password">
+                        Contraseña
+                    </label>
+
                     <input
+                        id="password"
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
