@@ -18,8 +18,11 @@ function Login() {
                 password
             });
 
-            console.log("LOGIN EXITOSO:", response.data);
-
+            const {token , user} = response.data;
+            localStorage.setItem("token", token)
+            localStorage.setItem("user", JSON.stringify(user));
+            console.log("Token guardado:", token);
+            console.log("Usuario guardado:", user);
         } catch (error) {
             console.error("ERROR EN LOGIN:", error);
         }
